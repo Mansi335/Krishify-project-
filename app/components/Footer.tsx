@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
+  const t = useTranslations("footer");
+
   return (
     <footer className="bg-gray-900 text-white py-12 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -12,41 +15,40 @@ export default function Footer() {
             <span className="text-2xl font-bold">KRISHIFY</span>
           </div>
           <p className="text-gray-400">
-            Transforming agriculture with AI-powered insights.
+            {t("description")}
           </p>
         </div>
         
         <div>
-          <h3 className="font-semibold mb-4">Product</h3>
+          <h3 className="font-semibold mb-4">{t("product.title")}</h3>
           <ul className="space-y-2 text-gray-400">
-            <li><Link href="/features" className="hover:text-white">Features</Link></li>
-            <li><Link href="/benefits" className="hover:text-white">Prediction</Link></li>
+            <li><Link href="/features" className="hover:text-white">{t("product.features")}</Link></li>
+            <li><Link href="/benefits" className="hover:text-white">{t("product.prediction")}</Link></li>
           </ul>
         </div>
         
         <div>
-          <h3 className="font-semibold mb-4">Resources</h3>
+          <h3 className="font-semibold mb-4">{t("resources.title")}</h3>
           <ul className="space-y-2 text-gray-400">
-            <li><Link href="/how-it-works" className="hover:text-white">How It Works</Link></li>
-            <li><Link href="/blog" className="hover:text-white">Blog</Link></li>
-            <li><Link href="/support" className="hover:text-white">Support</Link></li>
+            <li><Link href="/how-it-works" className="hover:text-white">{t("resources.howItWorks")}</Link></li>
+            <li><Link href="/blog" className="hover:text-white">{t("resources.blog")}</Link></li>
+            <li><Link href="/support" className="hover:text-white">{t("resources.support")}</Link></li>
           </ul>
         </div>
         
         <div>
-          <h3 className="font-semibold mb-4">Company</h3>
+          <h3 className="font-semibold mb-4">{t("company.title")}</h3>
           <ul className="space-y-2 text-gray-400">
-            <li><Link href="/about" className="hover:text-white">About</Link></li>
-            <li><Link href="/contact" className="hover:text-white">Contact</Link></li>
-            <li><Link href="/privacy" className="hover:text-white">Privacy</Link></li>
+            <li><Link href="/about" className="hover:text-white">{t("company.about")}</Link></li>
+            <li><Link href="/contact" className="hover:text-white">{t("company.contact")}</Link></li>
+            <li><Link href="/privacy" className="hover:text-white">{t("company.privacy")}</Link></li>
           </ul>
         </div>
       </div>
       
       <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-        <p>&copy; 2024 KRISHIFY. All rights reserved.</p>
+        <p>{t("copyright")}</p>
       </div>
     </footer>
   );
 }
-

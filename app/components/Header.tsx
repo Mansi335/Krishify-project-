@@ -1,10 +1,13 @@
 "use client";
 
+import LanguageSwitcher from "./LanguageSwitcher";
 import Link from "next/link";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const t = useTranslations("header");
 
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-white shadow-sm">
@@ -17,25 +20,26 @@ export default function Header() {
       
       <nav className="hidden md:flex items-center gap-8">
         <Link href="/features" className="text-gray-700 hover:text-yellow-600 transition-colors">
-          Features
+          {t("features")}
         </Link>
         <Link href="/how-it-works" className="text-gray-700 hover:text-yellow-600 transition-colors">
-          How It Works
+          {t("howItWorks")}
         </Link>
         <Link href="/benefits" className="text-gray-700 hover:text-yellow-600 transition-colors">
-           Prediction
+          {t("prediction")}
         </Link>
       </nav>
       
       <div className="hidden md:flex items-center gap-4">
+        <LanguageSwitcher />
         <Link href="/signin" className="text-gray-700 hover:text-yellow-600 transition-colors">
-          Sign In
+          {t("signIn")}
         </Link>
         <Link 
           href="/get-started" 
           className="bg-yellow-400 text-black px-6 py-2 rounded-full hover:bg-yellow-500 transition-colors"
         >
-          Get Started
+          {t("getStarted")}
         </Link>
       </div>
       
@@ -61,14 +65,14 @@ export default function Header() {
       
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="absolute top-full left-0 right-0 bg-white shadow-lg md:hidden">
+        <div className="absolute top-full left-0 right-0 bg-white shadow-lg md:hidden z-50">
           <nav className="flex flex-col p-4 space-y-4">
             <Link 
               href="/features" 
               className="text-gray-700 hover:text-yellow-600 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Features
+              {t("features")}
             </Link>
           
             <Link 
@@ -76,30 +80,33 @@ export default function Header() {
               className="text-gray-700 hover:text-yellow-600 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              How It Works
+              {t("howItWorks")}
             </Link>
             <Link 
               href="/benefits" 
               className="text-gray-700 hover:text-yellow-600 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-                 Prediction
+              {t("prediction")}
             </Link>
           
             <div className="border-t pt-4 flex flex-col gap-2">
+              <div className="flex justify-center pb-2">
+                <LanguageSwitcher />
+              </div>
               <Link 
                 href="/signin" 
                 className="text-gray-700 hover:text-yellow-600 transition-colors text-center"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Sign In
+                {t("signIn")}
               </Link>
               <Link 
                 href="/get-started" 
                 className="bg-yellow-400 text-black px-6 py-2 rounded-full hover:bg-yellow-500 transition-colors text-center"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Get Started
+                {t("getStarted")}
               </Link>
             </div>
           </nav>
@@ -108,4 +115,3 @@ export default function Header() {
     </header>
   );
 }
-

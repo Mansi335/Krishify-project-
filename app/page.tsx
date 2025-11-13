@@ -1,9 +1,10 @@
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import MetricCard from "./components/MetricCard";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
-export default function Home() {
+export default async function Home() {
+  const t = await getTranslations("home");
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -16,34 +17,31 @@ export default function Home() {
             {/* Badges */}
             <div className="flex flex-wrap gap-3">
               <span className="bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-medium">
-                AI-Powered Agriculture
+                {t("badgeAI")}
               </span>
               <span className="bg-yellow-100 text-yellow-700 px-4 py-1 rounded-full text-sm font-medium">
-                100% Free Forever
+                {t("badgeFree")}
               </span>
             </div>
             
             {/* Headline */}
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="text-black">Smart Farming,</span>
+              <span className="text-black">{t("headline1")}</span>
               <br />
-              <span className="text-yellow-600">Data-Driven</span>
+              <span className="text-yellow-600">{t("headline2")}</span>
               <br />
-              <span className="text-black">Decisions</span>
+              <span className="text-black">{t("headline3")}</span>
             </h1>
             
             {/* Description */}
             <p className="text-lg text-gray-700 leading-relaxed max-w-xl">
-              KRISHIFY transforms agricultural data into actionable intelligence. Predict crop yields, 
-              optimize resource use, and boost productivity with AI-powered insights—completely free 
-              for all farmers.
+              {t("description")}
             </p>
             
             {/* Disclaimer */}
             <p className="text-yellow-600 font-medium">
-              Always Free • No Credit Card Required • No Hidden Charges
+              {t("disclaimer")}
             </p>
-            
           
            
           </div>

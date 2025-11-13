@@ -1,30 +1,34 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
-export default function HowItWorksPage() {
+export default async function HowItWorksPage() {
+  const t = await getTranslations("howItWorks");
+
   const steps = [
     {
       number: "1",
-      title: "Sign Up",
-      description: "Create your free account in minutes. No credit card required.",
+      title: t("step1.title"),
+      description: t("step1.description"),
       icon: "📝"
     },
     {
       number: "2",
-      title: "Connect Your Farm",
-      description: "Add your farm details, field locations, and crop information.",
+      title: t("step2.title"),
+      description: t("step2.description"),
       icon: "🌾"
     },
     {
       number: "3",
-      title: "Get AI Insights",
-      description: "Receive personalized recommendations based on your farm data.",
+      title: t("step3.title"),
+      description: t("step3.description"),
       icon: "🤖"
     },
     {
       number: "4",
-      title: "Optimize & Grow",
-      description: "Implement suggestions and watch your productivity increase.",
+      title: t("step4.title"),
+      description: t("step4.description"),
       icon: "📈"
     }
   ];
@@ -36,10 +40,10 @@ export default function HowItWorksPage() {
       <main className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-black mb-4">
-            How <span className="text-yellow-600">KRISHIFY</span> Works
+            {t("title")} <span className="text-yellow-600">{t("titleHighlight")}</span> {t("titleSuffix")}
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Get started with KRISHIFY in four simple steps and transform your farming operations.
+            {t("subtitle")}
           </p>
         </div>
         
@@ -62,12 +66,12 @@ export default function HowItWorksPage() {
         </div>
         
         <div className="mt-16 text-center">
-          <a
+          <Link
             href="/get-started"
             className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-500 transition-colors"
           >
-            Get Started Now
-          </a>
+            {t("getStartedButton")}
+          </Link>
         </div>
       </main>
       
@@ -75,4 +79,3 @@ export default function HowItWorksPage() {
     </div>
   );
 }
-

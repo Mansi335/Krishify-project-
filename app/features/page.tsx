@@ -1,37 +1,35 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { getTranslations } from "next-intl/server";
 
-export default function FeaturesPage() {
+export default async function FeaturesPage() {
+  const t = await getTranslations("features");
+
   const features = [
     {
-      title: "AI-Powered Crop Prediction",
-      description: "Predict crop yields with 92% accuracy using advanced machine learning algorithms.",
+      title: t("cropPrediction.title"),
+      description: t("cropPrediction.description"),
       icon: "🌾"
     },
     {
-      title: "Resource Optimization",
-      description: "Optimize water, fertilizer, and pesticide usage to reduce costs and environmental impact.",
+      title: t("resourceOptimization.title"),
+      description: t("resourceOptimization.description"),
       icon: "💧"
     },
     {
-      title: "Real-Time Monitoring",
-      description: "Monitor your fields in real-time with IoT sensors and satellite imagery.",
+      title: t("aiDrivenInsights.title"),
+      description: t("aiDrivenInsights.description"),
+      icon: "🧠"
+    },
+    {
+      title: t("userFriendlyDashboard.title"),
+      description: t("userFriendlyDashboard.description"),
       icon: "📊"
     },
     {
-      title: "Weather Integration",
-      description: "Get accurate weather forecasts and alerts to protect your crops.",
-      icon: "🌤️"
-    },
-    {
-      title: "Market Insights",
-      description: "Access market trends and pricing data to make informed selling decisions.",
-      icon: "📈"
-    },
-    {
-      title: "Farm Management",
-      description: "Manage your entire farm operation from a single, easy-to-use dashboard.",
-      icon: "🚜"
+      title: t("sustainabilityFocused.title"),
+      description: t("sustainabilityFocused.description"),
+      icon: "🌎"
     }
   ];
 
@@ -42,10 +40,10 @@ export default function FeaturesPage() {
       <main className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-black mb-4">
-            Powerful Features for <span className="text-yellow-600">Smart Farming</span>
+            {t("title")} <span className="text-yellow-600">{t("titleHighlight")}</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Everything you need to transform your farming operations with AI-powered insights.
+            {t("subtitle")}
           </p>
         </div>
         
@@ -67,4 +65,3 @@ export default function FeaturesPage() {
     </div>
   );
 }
-

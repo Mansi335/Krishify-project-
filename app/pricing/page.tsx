@@ -1,8 +1,22 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const t = await getTranslations("pricing");
+
+  const features = [
+    t("features.unlimited"),
+    t("features.predictions"),
+    t("features.monitoring"),
+    t("features.weather"),
+    t("features.optimization"),
+    t("features.market"),
+    t("features.support"),
+    t("features.noCard")
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       <Header />
@@ -10,10 +24,10 @@ export default function PricingPage() {
       <main className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-black mb-4">
-            Simple, <span className="text-yellow-600">Free</span> Pricing
+            {t("title")} <span className="text-yellow-600">{t("titleHighlight")}</span> {t("titleSuffix")}
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            KRISHIFY is completely free forever. No hidden charges, no credit card required.
+            {t("subtitle")}
           </p>
         </div>
         
@@ -21,56 +35,30 @@ export default function PricingPage() {
           <div className="bg-gradient-to-br from-yellow-50 to-white rounded-2xl p-12 border-2 border-yellow-200 shadow-xl">
             <div className="text-center">
               <div className="inline-block bg-yellow-400 text-black px-4 py-2 rounded-full text-sm font-medium mb-6">
-                100% FREE FOREVER
+                {t("freePlan")}
               </div>
-              <h2 className="text-4xl font-bold text-black mb-4">Free Plan</h2>
-              <div className="text-6xl font-bold text-yellow-600 mb-2">$0</div>
-              <p className="text-gray-600 mb-8">per month, forever</p>
+              <h2 className="text-4xl font-bold text-black mb-4">{t("planName")}</h2>
+              <div className="text-6xl font-bold text-yellow-600 mb-2">{t("price")}</div>
+              <p className="text-gray-600 mb-8">{t("pricePeriod")}</p>
               
               <div className="text-left max-w-md mx-auto space-y-4 mb-8">
-                <div className="flex items-start gap-3">
-                  <span className="text-yellow-600 text-xl">✓</span>
-                  <span className="text-gray-700">Unlimited farm management</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-yellow-600 text-xl">✓</span>
-                  <span className="text-gray-700">AI-powered crop predictions</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-yellow-600 text-xl">✓</span>
-                  <span className="text-gray-700">Real-time monitoring</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-yellow-600 text-xl">✓</span>
-                  <span className="text-gray-700">Weather integration</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-yellow-600 text-xl">✓</span>
-                  <span className="text-gray-700">Resource optimization</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-yellow-600 text-xl">✓</span>
-                  <span className="text-gray-700">Market insights</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-yellow-600 text-xl">✓</span>
-                  <span className="text-gray-700">24/7 customer support</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <span className="text-yellow-600 text-xl">✓</span>
-                  <span className="text-gray-700">No credit card required</span>
-                </div>
+                {features.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <span className="text-yellow-600 text-xl">✓</span>
+                    <span className="text-gray-700">{feature}</span>
+                  </div>
+                ))}
               </div>
               
               <Link
                 href="/get-started"
                 className="inline-block bg-yellow-400 text-black px-8 py-4 rounded-full text-lg font-semibold hover:bg-yellow-500 transition-colors w-full max-w-md"
               >
-                Get Started for Free
+                {t("getStartedButton")}
               </Link>
               
               <p className="text-sm text-gray-500 mt-4">
-                No hidden charges • No credit card required • Cancel anytime
+                {t("footer")}
               </p>
             </div>
           </div>
@@ -81,4 +69,3 @@ export default function PricingPage() {
     </div>
   );
 }
-
